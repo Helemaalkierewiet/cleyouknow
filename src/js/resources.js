@@ -14,6 +14,7 @@ const Resources = {
     CharacterUp: new ImageSource('images/Character_Up.png'),
     CharacterUpLeft: new ImageSource('images/Character_UpLeft.png'),
     CharacterUpRight: new ImageSource('images/Character_UpRight.png'),
+    Bierbottle: new ImageSource('images/bierbottle.png'),
     
     
     

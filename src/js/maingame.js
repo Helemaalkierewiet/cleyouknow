@@ -9,12 +9,18 @@ import { GameOverScene } from './end.js'
 import { ScoreLabel } from './score.js'
 
 export class MainGame extends Scene {
-
+    score = 0;
+    scoreLabel;
 
 
     addPoints(points) {
-        this.score += points
-        //reference uiclass with scorelabel to connect gamescore with the scorelabel
+        this.score += points;
+        this.updateScore();
+    }
+
+    updateScore() {
+        this.scoreLabel.updateScore(this.score);
+        
     }
     
 
@@ -32,7 +38,7 @@ export class MainGame extends Scene {
         console.log('GANGSHIT scorelabel')
         this.add(this.scoreLabel)
         
-        this.addPoints(1);
+        
         
         //background
         const bg = new Background()
@@ -50,6 +56,8 @@ export class MainGame extends Scene {
         truck.pos = new Vector(580, 200)
         this.add(truck)
 
+        
+
 
         //PLAYER
         const player = new Player()
@@ -60,7 +68,7 @@ export class MainGame extends Scene {
 
         player.on('collisionstart', (event) => {
             if (event.other instanceof Car || event.other instanceof Truck) {
-                this.engine.gameOver();
+                this.engine.goToScene('gameOver', {sceneActivationData: this.score});
                 
                 for (const actor of this.actors) {
                     actor.kill();
@@ -72,7 +80,12 @@ export class MainGame extends Scene {
 
     }
 
-    
+    onPostUpdate(engine) {
+        this.addPoints(1);
+        // this.updateScore();
+        console.log('ADDPOINTS CALL FUNCTION')
+        console.log(this.score)
+    }
     
     
 }

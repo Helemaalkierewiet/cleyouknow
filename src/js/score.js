@@ -17,7 +17,7 @@ export class ScoreLabel extends Label {
     }
 
     updateScore(newScore) {
-        this.text = `Score: ${newScore}`;
+        this.text = `Meters: ${newScore}`;
         console.log(newScore);
        
     }

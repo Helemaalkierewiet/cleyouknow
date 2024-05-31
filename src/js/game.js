@@ -10,14 +10,9 @@ import { MainGame } from './maingame.js'
 import { StartScene } from './start.js'
 
 export class Game extends Engine {
-    score = 0;
     ui;
 
-    addPoints(points) {
-        this.score += points;
-        this.ui.updateScore(this.score);
-        console.log('score', this.score);
-    }
+  
     
     resetGame() {
 
@@ -35,26 +30,20 @@ export class Game extends Engine {
 
     
 
-      
 
 
-        const mainGame = new MainGame();
-
-        this.add('MainGame', mainGame);
+        this.add('MainGame', new MainGame());
         this.add('gameOver', new GameOverScene(this));
         this.add('StartScene', new StartScene(this));
 
-        this.goToScene('StartScene')
-
-        this.start(ResourceLoader).then(() => mainGame.startGame())
-    }
-
-    gameOver() {
         
-        this.goToScene('gameOver');
+
+        this.start(ResourceLoader).then(() => this.startGame())
     }
 
-
+    startGame() {
+        this.goToScene('StartScene');
+    }
     
 
 }

@@ -2,6 +2,7 @@ import { Actor, Engine, Vector } from "excalibur"
 import { Vehicle } from './vehicle'
 import { Resources } from './resources'
 import { Car } from "./car";
+import { Bier } from "./bier";
 
 export class Truck extends Vehicle {
 
@@ -24,6 +25,8 @@ export class Truck extends Vehicle {
        
         this.graphics.use(sprite);
         this.on('collisionstart', (event) => this.hitSomething(event));
+        let bierfles = new Bier();
+        this.addChild(bierfles);
     }
     
     hitSomething(event) {
